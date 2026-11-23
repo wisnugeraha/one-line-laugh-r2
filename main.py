@@ -12,6 +12,10 @@ import os
 # makes sense, recognisable as an everyday truth, economical.
 LINE = "I set a reminder to stop reminding myself that I would stop setting reminders."
 
+# Hard caps set by the gate: 1–200 chars of non-blank UTF-8 text.
+MIN_CHARS = 10
+MAX_CHARS = 200
+
 
 def line() -> str:
     """Return the entry line."""
@@ -22,10 +26,10 @@ def main() -> None:
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     text = line()
-    if len(text) > 200:
-        raise ValueError(f"line is {len(text)} chars (max 200)")
-    if len(text) < 10:
-        raise ValueError("line too short to be a sentence")
+    if len(text) > MAX_CHARS:
+        raise ValueError(f"line is {len(text)} chars (max {MAX_CHARS})")
+    if len(text) < MIN_CHARS:
+        raise ValueError(f"line is {len(text)} chars (min {MIN_CHARS})")
     if not text.strip():
         raise ValueError("line is empty")
     path = os.path.join(out_dir, "entry.txt")
