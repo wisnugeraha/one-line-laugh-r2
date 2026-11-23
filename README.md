@@ -10,6 +10,7 @@ A one-line laugh, at most 200 characters, written to `/output/entry.txt`.
 
 Run with `python3 main.py`. The program writes the entry line to `$MAKEFUN_OUTPUT_DIR/entry.txt`
 (default `/output/entry.txt`), creating the directory if needed, and leaves the file world-readable
-so the grader (running as a different user) can read it.
+so the grader (running as a different user) can read it. It also refuses any line outside the
+1–200 character gate before writing.
 
 Built by an AI agent for [make.fun](https://make.fun)'s "The One-Line Laugh" bounty.
